@@ -1,0 +1,191 @@
+<!-- Odoo Apps description page for quick_create_governance (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
+
+<!-- ============================== HERO ============================== -->
+<div style="background:linear-gradient(120deg,#017E84 0%,#3d6b78 45%,#714B67 100%);border-radius:18px;padding:48px 40px 40px;color:#ffffff;margin-top:12px;">
+  <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px;">Administration &middot; Master Data &middot; Data Quality</div>
+  <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">Quick Create Governance</h1>
+  <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">Decide from one screen where users may create records on the fly. Pick a model and its many2one / many2many fields, and the <b>Create</b> and <b>Create and edit...</b> options disappear from their dropdowns &ndash; no XML, no view inheritance, no Studio edits.</p>
+  <div>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">19 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; العربية</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: quick_create_governance</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
+  </div>
+</div>
+
+<!-- ============================== KEY NUMBERS ============================== -->
+<div style="display:flex;flex-wrap:wrap;margin:28px -8px 8px;">
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">1 screen</div><div style="font-size:15px;color:#555;">Every rule for every model, grouped by model</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">2 switches</div><div style="font-size:15px;color:#555;">Block <b>Create</b>, <b>Create and edit...</b>, or both</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">0 extra RPC</div><div style="font-size:15px;color:#555;">Rules travel with the session; dropdowns stay as fast as before</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">0 queries</div><div style="font-size:15px;color:#555;">Compiled rules are cached server-side per group set</div></div>
+</div>
+
+<!-- ============================== WHY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Why this module</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">One typo in a dropdown and Odoo creates a duplicate company, tag or country. Standard Odoo can stop it, but only field by field, view by view.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>Blocking quick create means adding <b>no_create</b> / <b>no_create_edit</b> options in the <b>XML of each view</b>.</li>
+      <li>The same field appears in <b>many views</b> (form, list, wizards, other apps); each needs its own inheritance.</li>
+      <li>There is <b>no central list</b> of where creation on the fly is allowed or blocked.</li>
+      <li>View options apply to <b>everyone</b>; a data steward cannot be allowed while others are blocked.</li>
+      <li>Removing <b>create rights</b> on the target model blocks it everywhere, including its own menu.</li>
+      <li>A later Studio edit or module update can <b>silently re-enable</b> creation.</li>
+    </ul>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #cfe7e7;background:#f4fbfb;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#017E84;margin:0 0 12px;">With this module</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>Rules are records: pick the <b>Model</b> and <b>Fields</b>, tick the actions to block. No code.</li>
+      <li>A rule follows the field into <b>every view</b> of the model: form, editable list, kanban, dialogs.</li>
+      <li><b>Settings &rsaquo; Users &amp; Companies &rsaquo; Quick Create Governance</b> lists all rules, grouped by model.</li>
+      <li><b>Exempt Groups</b> per rule let stewards keep creating while everyone else is blocked.</li>
+      <li>Only <b>inline</b> creation is removed; the target model&rsquo;s own menu and rights are untouched.</li>
+      <li>Rules are applied <b>after</b> the view options, so XML or Studio cannot re-enable creation on a governed field.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">How it works</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Four steps, done once by an administrator.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;">
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">1</div><div style="font-weight:700;margin-bottom:4px;">Pick a model</div><div style="font-size:14px;color:#555;">The model whose screens host the field, e.g. <b>Contact</b>.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">2</div><div style="font-weight:700;margin-bottom:4px;">Choose fields</div><div style="font-size:14px;color:#555;">Any many2one / many2many fields, or leave empty for all of them.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">3</div><div style="font-weight:700;margin-bottom:4px;">Block actions</div><div style="font-size:14px;color:#555;">Tick <b>Block "Create"</b> and/or <b>Block "Create and edit..."</b>; add exempt groups if needed.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #cfe7e7;background:#f4fbfb;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#017E84;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">4</div><div style="font-weight:700;margin-bottom:4px;">Users reload</div><div style="font-size:14px;color:#555;">Rules reach each user at login or page reload; <b>Apply Now (Reload)</b> refreshes your own client.</div></div>
+</div>
+
+<!-- ============================== FEATURES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Features</h2>
+<p style="font-size:16px;color:#555;margin:0 0 4px;">Screenshots use the module&rsquo;s demo data on a standard Odoo 16 database: three rules on <b>Contact</b> (Related Company + Tags, Salesperson, Country), one on <b>Companies</b>, and an archived rule on <b>Bank Accounts</b>.</p>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Menus</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">One place for every rule</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Settings &rsaquo; Users &amp; Companies &rsaquo; Quick Create Governance</b>, visible to the <b>Administration / Settings</b> group only.</p>
+  <img src="qcg_01_menu.png" alt="Quick Create Governance menu under Settings, Users and Companies" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 1</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">See what is governed at a glance</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The list is grouped by <b>Model</b> and shows <b>Fields</b>, both block switches, <b>Exempt Groups</b> and <b>Active</b> as toggles you can flip in place. Filters: <b>Whole Model</b>, <b>With Exemptions</b>, <b>Archived</b>. A rule with no field (here <b>Companies</b>) covers every relational field of the model.</p>
+  <img src="qcg_02_rules_list.png" alt="Rules list grouped by model with block toggles" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 2</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">A rule in three fields</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The name is built automatically (<b>Contact / Related Company, Tags</b>) and a summary line spells out what is blocked. The <b>Fields</b> selector only offers many2one / many2many fields of the chosen model, and a rule must block at least one action. Use <b>Notes</b> to tell users which process to follow instead.</p>
+  <img src="qcg_03_rule_form.png" alt="Rule form with target model, fields and blocked actions" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">No more accidental records from a dropdown</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">On a governed field, typing a name that does not exist shows <b>No records</b> instead of <b>Create "..."</b> and <b>Create and edit...</b>. Existing records stay selectable as usual. The rule applies to the many2one widget and everything built on it (list and kanban many2one, avatar widgets, partner widgets).</p>
+  <img src="qcg_04_restricted_m2o.png" alt="Related Company dropdown showing No records and no create options" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="qcg_08_tags.png" alt="Tags many2many field without create options" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="font-size:13px;color:#777;margin:6px 0 0;">The same rule on the <b>Tags</b> many2many field.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 4</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">"Search More..." without a back door</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">When <b>Block "Create and edit..."</b> is on, the selection dialog opened from <b>Search More...</b> loses its <b>New</b> button: users can search and pick, not create. The same applies to the dialog behind <b>Add a line</b> on many2many lists.</p>
+  <img src="qcg_05_search_more_dialog.png" alt="Search More dialog with only a Close button" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 5</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Block only what you need</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The <b>Salesperson</b> rule blocks only <b>Create and edit...</b>: a quick <b>Create "Nadia"</b> stays available, the full form does not. Members of <b>Master Data Stewards</b> are exempt and keep both options.</p>
+  <img src="qcg_07_partial_rule.png" alt="Salesperson dropdown with quick create only" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 6</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Everything else stays native</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Fields without a rule, such as <b>Title</b> here, keep both standard options. Their own view options (<b>no_create</b>, <b>no_create_edit</b>, <b>no_quick_create</b>) keep working unchanged: the module only ever removes options.</p>
+  <img src="qcg_06_native_m2o.png" alt="Title dropdown with native Create and Create and edit options" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 7</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Fully translated to Arabic</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Menus, fields, help texts, views and error messages ship in <b>Arabic</b> (<b>i18n/ar.po</b>), with a <b>.pot</b> template for other languages. Right-to-left layouts work out of the box.</p>
+  <img src="qcg_09_arabic.png" alt="Rules list in Arabic, right to left" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<!-- ============================== RULE LOGIC ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">What each switch removes</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Two independent switches per rule.</p>
+<div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#fee2e2;color:#b91c1c;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Block "Create"</span> the <b>Create "&hellip;"</b> dropdown entry and the create confirmation</div>
+<div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#fef3c7;color:#b45309;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Block "Create and edit..."</span> the <b>Create and edit...</b> entry and the <b>New</b> button of selection dialogs</div>
+<div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#d1fae5;color:#047857;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">No rule</span> native Odoo behaviour, view options included</div>
+<div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Rule:</b> rules on the same field add up, the most restrictive wins. Example: a whole-model rule on <b>Contact</b> blocks <b>Create</b>, a second rule on <b>Related Company</b> blocks <b>Create and edit...</b> &rarr; Related Company loses both, every other contact field loses only <b>Create</b>.</div>
+
+<!-- ============================== CORNER CASES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Built for real-world corner cases</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">What happens when things are not the happy path.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>XML says no_create: False</b><br/><span style="color:#555;">The rule is applied after view options are read, so a governed field stays blocked.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Studio-edited views</b><br/><span style="color:#555;">Enforcement lives in the field widgets, not in the view arch, so customised views are covered too.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Older (legacy) screens</b><br/><span style="color:#555;">Odoo 16 views not yet converted to OWL use the legacy many2one widget; it is governed by the same rules.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Only "Create and edit" blocked</b><br/><span style="color:#555;">Quick create stays, and the misleading "No records" line next to it is hidden.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>One2many fields</b><br/><span style="color:#555;">Never touched: they cannot be selected in a rule, so adding lines works as before.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Uninstalled model or field</b><br/><span style="color:#555;">Rules on a deleted model are removed with it (cascade); dropped fields leave the rule automatically.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-worker servers</b><br/><span style="color:#555;">Saving, archiving or deleting a rule clears the compiled cache on every worker.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Paused rules</b><br/><span style="color:#555;">Archive a rule (Active toggle) to suspend it without losing its settings.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Wrong field picked</b><br/><span style="color:#555;">Saving a rule with a field of another model, or a non-relational field, is refused with a clear message.</span></div>
+</div>
+<div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Scope:</b> this is user-interface governance. Users who have create rights on the target model can still create from its own menu, by import or through the API. Use access rights and record rules when creation must be impossible everywhere.</div>
+
+<!-- ============================== SECURITY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Security</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Who can do what.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Can</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Administration / Settings</td><td style="padding:10px 14px;">See the menu, create, edit, archive and delete rules</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">All other users</td><td style="padding:10px 14px;">No access to rules; they only receive the restrictions that apply to them</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Members of a rule&rsquo;s Exempt Groups</td><td style="padding:10px 14px;">Not affected by that rule (other rules still apply)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Multi-company</td><td style="padding:10px 14px;">Rules are database-wide and apply in every company</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== TECHNICAL ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Technical details</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">For the people who install and maintain it.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Odoo version</td><td style="padding:10px 14px;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Depends on</td><td style="padding:10px 14px;"><code>base</code>, <code>web</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Python dependency</td><td style="padding:10px 14px;">None</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Menus</td><td style="padding:10px 14px;">Settings &rsaquo; Users &amp; Companies &rsaquo; Quick Create Governance</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Models</td><td style="padding:10px 14px;"><code>quick.create.rule</code>; extends <code>ir.http</code> (session info)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Front end</td><td style="padding:10px 14px;">Patches <code>Many2OneField</code>, <code>Many2ManyTagsField</code>, <code>X2ManyField</code> (many2many), <code>Many2XAutocomplete</code> and the legacy <code>FieldMany2One</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Performance</td><td style="padding:10px 14px;">Rules compiled once per group set (ORM cache), shipped in <code>session_info</code>; per-field check is an in-memory lookup</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Languages</td><td style="padding:10px 14px;">English, Arabic (<code>i18n/ar.po</code>), <code>.pot</code> template included</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Automated tests</td><td style="padding:10px 14px;">19: 16 unit tests (compilation, merging, exemptions, constraints, cache invalidation, zero-query warm cache) and 3 HTTP tests (session payload + 2 browser tours, including a latency budget)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">License</td><td style="padding:10px 14px;">LGPL-3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CONTACT ============================== -->
+<div style="margin:52px 0 40px;background:linear-gradient(120deg,#714B67 0%,#017E84 100%);border-radius:18px;padding:36px 40px;color:#fff;">
+  <h2 style="font-size:26px;font-weight:700;margin:0 0 8px;color:#fff;">Support &amp; customization</h2>
+  <p style="font-size:16px;line-height:1.6;margin:0 0 20px;color:#fff;opacity:.95;">Questions, a demo, or an adaptation to your own process? Get in touch.</p>
+  <a href="mailto:ibrahim.yahiah@gmail.com" style="display:inline-block;background:#fff;color:#714B67;font-weight:700;text-decoration:none;border-radius:8px;padding:12px 22px;margin:0 12px 10px 0;">&#9993;&nbsp; ibrahim.yahiah@gmail.com</a>
+  <a href="https://www.linkedin.com/in/ibrahim-yahia" target="_blank" rel="noopener" style="display:inline-block;border:2px solid #fff;color:#fff;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 22px;margin:0 0 10px 0;">LinkedIn: Ibrahim Yahia</a>
+  <p style="font-size:13px;margin:14px 0 0;opacity:.8;color:#fff;">Author: Ibrahim Yahia &middot; License: LGPL-3</p>
+</div>
+
+</section>

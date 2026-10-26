@@ -1,0 +1,313 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* quick_create_governance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 06:00+0000\n"
+"PO-Revision-Date: 2026-10-26 06:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "%(actions)s blocked on %(fields)s"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "%s field(s)"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__active
+msgid "Active"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "All relational fields"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "all relational fields"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Apply Now (Reload)"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
+msgid "Archived"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__block_create_edit
+msgid "Block \"Create and edit...\""
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__block_quick_create
+msgid "Block \"Create\""
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Blocked Actions"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "Create"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "Create and edit"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Empty = every many2one / many2many field"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__exempt_group_ids
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Exempt Groups"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__field_ids
+msgid "Fields"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.actions.act_window,help:quick_create_governance.quick_create_rule_action
+msgid "Govern creation on the fly"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,help:quick_create_governance.field_quick_create_rule__field_ids
+msgid "Many2one / many2many fields to restrict. Leave empty to restrict every relational field of the model."
+msgstr ""
+
+#. module: quick_create_governance
+#: model:res.groups,name:quick_create_governance.group_master_data_stewards
+msgid "Master Data Stewards"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,help:quick_create_governance.field_quick_create_rule__exempt_group_ids
+msgid "Members of any of these groups are not affected by this rule."
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__model_id
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
+msgid "Model"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,help:quick_create_governance.field_quick_create_rule__model_id
+msgid "Model whose form / list views host the relational fields to govern."
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__name
+msgid "Name"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "New rule"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-javascript
+#: code:addons/quick_create_governance/static/src/js/many2x_autocomplete_patch.js:0
+#, python-format
+msgid "No records"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__note
+msgid "Note"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Notes"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "Nothing"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.actions.act_window,help:quick_create_governance.quick_create_rule_action
+msgid "Pick a model and, optionally, its many2one / many2many fields to remove the <b>Create</b> and/or <b>Create and edit...</b> options from their dropdowns."
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.actions.act_window,name:quick_create_governance.quick_create_rule_action
+#: model:ir.ui.menu,name:quick_create_governance.menu_quick_create_governance
+msgid "Quick Create Governance"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model,name:quick_create_governance.model_quick_create_rule
+msgid "Quick Create Governance Rule"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Quick Create Rule"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_tree
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
+msgid "Quick Create Rules"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,help:quick_create_governance.field_quick_create_rule__block_create_edit
+msgid "Removes \"Create and edit...\" from the dropdown and the \"New\" button of the \"Search More...\" selection dialog."
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,help:quick_create_governance.field_quick_create_rule__block_quick_create
+msgid "Removes the \"Create <typed text>\" option from the dropdown."
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Rule"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "Rule '%(rule)s': the following fields are not many2one / many2many fields of model %(model)s: %(fields)s"
+msgstr ""
+
+#. module: quick_create_governance
+#. odoo-python
+#: code:addons/quick_create_governance/models/quick_create_rule.py:0
+#, python-format
+msgid "Rule '%s' must block at least one action (\"Create\" or \"Create and edit...\")."
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Rules are pushed to each user's browser on login / page reload. This reloads your own web client immediately."
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Rules only ever <b>remove</b> creation options: XML / Studio options such as <code>no_create</code> keep working on fields that are not governed, and cannot re-enable creation on governed ones. Changes reach users on their next login or page reload."
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__scope_summary
+msgid "Scope"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Target"
+msgstr ""
+
+#. module: quick_create_governance
+#: model:ir.model.fields,field_description:quick_create_governance.field_quick_create_rule__model_name
+msgid "Technical Model"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
+msgid "Whole Model"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_form
+msgid "Why is creation blocked here? Which process should be used instead?"
+msgstr ""
+
+#. module: quick_create_governance
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
+msgid "With Exemptions"
+msgstr ""

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="quick_create_rule_view_tree" model="ir.ui.view">
+        <field name="name">quick.create.rule.tree</field>
+        <field name="model">quick.create.rule</field>
+        <field name="arch" type="xml">
+            <tree string="Quick Create Rules" decoration-muted="not active">
+                <field name="sequence" widget="handle"/>
+                <field name="model_id"/>
+                <field name="model_name" optional="hide"/>
+                <field name="field_ids" widget="many2many_tags"/>
+                <field name="block_quick_create" widget="boolean_toggle"/>
+                <field name="block_create_edit" widget="boolean_toggle"/>
+                <field name="exempt_group_ids" widget="many2many_tags" optional="show"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="quick_create_rule_view_form" model="ir.ui.view">
+        <field name="name">quick.create.rule.form</field>
+        <field name="model">quick.create.rule</field>
+        <field name="arch" type="xml">
+            <form string="Quick Create Rule">
+                <header>
+                    <button name="action_reload_client" type="object" string="Apply Now (Reload)"
+                            class="btn-secondary"
+                            help="Rules are pushed to each user's browser on login / page reload. This reloads your own web client immediately."/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Rule"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                        <field name="scope_summary" class="text-muted"/>
+                    </div>
+                    <group>
+                        <group string="Target">
+                            <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="model_name" invisible="1"/>
+                            <field name="field_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Empty = every many2one / many2many field"
+                                   attrs="{'readonly': [('model_id', '=', False)]}"/>
+                        </group>
+                        <group string="Blocked Actions">
+                            <field name="block_quick_create"/>
+                            <field name="block_create_edit"/>
+                            <field name="sequence"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Exempt Groups" name="exemptions">
+                            <field name="exempt_group_ids" options="{'no_create': True}">
+                                <tree>
+                                    <field name="full_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="note" placeholder="Why is creation blocked here? Which process should be used instead?"/>
+                        </page>
+                    </notebook>
+                    <div class="alert alert-info mb-0" role="status">
+                        <p class="mb-0">Rules only ever <b>remove</b> creation options: XML / Studio options such as <code>no_create</code> keep working on fields that are not governed, and cannot re-enable creation on governed ones. Changes reach users on their next login or page reload.</p>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="quick_create_rule_view_search" model="ir.ui.view">
+        <field name="name">quick.create.rule.search</field>
+        <field name="model">quick.create.rule</field>
+        <field name="arch" type="xml">
+            <search string="Quick Create Rules">
+                <field name="model_id"/>
+                <field name="field_ids"/>
+                <field name="exempt_group_ids"/>
+                <filter name="filter_all_fields" string="Whole Model"
+                        domain="[('field_ids', '=', False)]"/>
+                <filter name="filter_with_exemptions" string="With Exemptions"
+                        domain="[('exempt_group_ids', '!=', False)]"/>
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_model" string="Model" context="{'group_by': 'model_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="quick_create_rule_action" model="ir.actions.act_window">
+        <field name="name">Quick Create Governance</field>
+        <field name="res_model">quick.create.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_model': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Govern creation on the fly</p>
+            <p>Pick a model and, optionally, its many2one / many2many fields to remove the <b>Create</b> and/or <b>Create and edit...</b> options from their dropdowns.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_quick_create_governance"
+              name="Quick Create Governance"
+              parent="base.menu_users"
+              action="quick_create_rule_action"
+              groups="base.group_system"
+              sequence="90"/>
+
+</odoo>

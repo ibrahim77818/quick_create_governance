@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_master_data_stewards" model="res.groups">
+        <field name="name">Master Data Stewards</field>
+    </record>
+
+    <record id="demo_rule_partner_company_tags" model="quick.create.rule">
+        <field name="sequence">10</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="field_ids" eval="[(6, 0, [ref('base.field_res_partner__parent_id'), ref('base.field_res_partner__category_id')])]"/>
+        <field name="block_quick_create" eval="True"/>
+        <field name="block_create_edit" eval="True"/>
+        <field name="note">Companies and tags are master data: they are created by the data team, never from a contact form.</field>
+    </record>
+
+    <record id="demo_rule_partner_salesperson" model="quick.create.rule">
+        <field name="sequence">20</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="field_ids" eval="[(6, 0, [ref('base.field_res_partner__user_id')])]"/>
+        <field name="block_quick_create" eval="False"/>
+        <field name="block_create_edit" eval="True"/>
+        <field name="exempt_group_ids" eval="[(6, 0, [ref('group_master_data_stewards')])]"/>
+        <field name="note">Users may not be configured from a contact form; stewards are exempt.</field>
+    </record>
+
+    <record id="demo_rule_partner_country" model="quick.create.rule">
+        <field name="sequence">30</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="field_ids" eval="[(6, 0, [ref('base.field_res_partner__country_id')])]"/>
+        <field name="block_quick_create" eval="True"/>
+        <field name="block_create_edit" eval="True"/>
+        <field name="note">Countries come from the ISO list shipped with Odoo.</field>
+    </record>
+
+    <record id="demo_rule_company_all" model="quick.create.rule">
+        <field name="sequence">10</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="block_quick_create" eval="True"/>
+        <field name="block_create_edit" eval="False"/>
+        <field name="note">No silent one-click records from the company form.</field>
+    </record>
+
+    <record id="demo_rule_bank_account_bank" model="quick.create.rule">
+        <field name="sequence">10</field>
+        <field name="active" eval="False"/>
+        <field name="model_id" ref="base.model_res_partner_bank"/>
+        <field name="field_ids" eval="[(6, 0, [ref('base.field_res_partner_bank__bank_id')])]"/>
+        <field name="block_quick_create" eval="True"/>
+        <field name="block_create_edit" eval="True"/>
+        <field name="note">Paused while the bank list is being cleaned up.</field>
+    </record>
+
+</odoo>

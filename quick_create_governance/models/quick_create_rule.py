@@ -131,23 +131,23 @@ class QuickCreateRule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return records
 
     def write(self, vals):
         res = super().write(vals)
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return res
 
     def unlink(self):
         res = super().unlink()
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return res
 
     def action_reload_client(self):
         """Rules reach a user's browser on the next page load; this reloads
         the current admin's web client so the change is visible at once."""
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return {"type": "ir.actions.client", "tag": "reload"}
 
     # ------------------------------------------------------------------

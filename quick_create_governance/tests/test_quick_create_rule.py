@@ -30,8 +30,8 @@ class TestQuickCreateRule(TransactionCase):
     def setUp(self):
         super().setUp()
         # ormcache survives the test-transaction rollback: start and end clean.
-        self.Rule.clear_caches()
-        self.addCleanup(self.Rule.clear_caches)
+        self.env.registry.clear_cache()
+        self.addCleanup(self.env.registry.clear_cache)
 
     # helpers -----------------------------------------------------------
     def _rule(self, fields=(), **vals):

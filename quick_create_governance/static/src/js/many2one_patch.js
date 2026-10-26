@@ -7,7 +7,7 @@
  *
  * The restriction is resolved once in setup() (resModel + field name never
  * change for a mounted field) and applied each time core recomputes the
- * active actions, i.e. AFTER the XML options (no_create, no_create_edit,
+ * active actions, i.e. AFTER the view options (no_create, no_create_edit,
  * no_quick_create, can_create) have been evaluated: governance can only
  * remove capabilities, never re-grant them.
  */
@@ -15,12 +15,12 @@ import { patch } from "@web/core/utils/patch";
 import { Many2OneField } from "@web/views/fields/many2one/many2one_field";
 import { getQuickCreateRestriction } from "./restriction_registry";
 
-patch(Many2OneField.prototype, "quick_create_governance.Many2OneField", {
+patch(Many2OneField.prototype, {
     setup() {
         const record = this.props.record;
         // Must be known before super.setup(), which calls computeActiveActions().
         this.qcgRestriction = record ? getQuickCreateRestriction(record.resModel, this.props.name) : null;
-        this._super(...arguments);
+        super.setup(...arguments);
         if (this.qcgRestriction && this.qcgRestriction.create) {
             // Many2XAutocomplete only offers "Create <text>" when it gets a quickCreate callback.
             this.quickCreate = null;
@@ -28,7 +28,7 @@ patch(Many2OneField.prototype, "quick_create_governance.Many2OneField", {
     },
 
     computeActiveActions(props) {
-        this._super(...arguments);
+        super.computeActiveActions(...arguments);
         const restriction = this.qcgRestriction;
         if (!restriction) {
             return;
@@ -47,6 +47,6 @@ patch(Many2OneField.prototype, "quick_create_governance.Many2OneField", {
         if (this.qcgRestriction && this.qcgRestriction.create) {
             return;
         }
-        return this._super(...arguments);
+        return super.openConfirmationDialog(...arguments);
     },
 });

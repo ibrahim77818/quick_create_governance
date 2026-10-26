@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-26 06:00+0000\n"
 "PO-Revision-Date: 2026-10-26 06:00+0000\n"
@@ -233,7 +233,7 @@ msgid "Quick Create Rule"
 msgstr ""
 
 #. module: quick_create_governance
-#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_tree
+#: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_list
 #: model_terms:ir.ui.view,arch_db:quick_create_governance.quick_create_rule_view_search
 msgid "Quick Create Rules"
 msgstr ""

@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <!-- Same result as core for ungoverned fields (see qcgQuickCreate). -->
-    <t t-inherit="web.Many2ManyTagsField" t-inherit-mode="extension" owl="1">
+    <t t-inherit="web.Many2ManyTagsField" t-inherit-mode="extension">
         <xpath expr="//Many2XAutocomplete" position="attributes">
             <attribute name="quickCreate">qcgQuickCreate</attribute>
         </xpath>

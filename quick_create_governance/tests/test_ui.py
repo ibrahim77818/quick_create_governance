@@ -18,7 +18,7 @@ class TestQuickCreateGovernanceUi(HttpCase):
         Rule = env["quick.create.rule"]
         # Isolate from pre-existing (e.g. demo) rules; rolled back after the class.
         Rule.search([]).write({"active": False})
-        Rule.clear_caches()
+        env.registry.clear_cache()
         cls.partner_model = env["ir.model"]._get("res.partner")
         fields = {
             name: env["ir.model.fields"]._get("res.partner", name)
@@ -71,11 +71,11 @@ class TestQuickCreateGovernanceUi(HttpCase):
             "block_quick_create": False,
             "block_create_edit": True,
         })
-        cls.url = "/web#action=%d&model=res.partner&view_type=form" % cls.action.id
+        cls.url = "/odoo/action-%d/new" % cls.action.id
 
     @classmethod
     def tearDownClass(cls):
-        cls.env["quick.create.rule"].clear_caches()
+        cls.env.registry.clear_cache()
         super().tearDownClass()
 
     def _session_info(self):
@@ -105,7 +105,7 @@ class TestQuickCreateGovernanceUi(HttpCase):
     def test_03_tour_exempt_group(self):
         group = self.env["res.groups"].create({"name": "QCR Tour Exempt"})
         self.rule_full.exempt_group_ids = [(6, 0, group.ids)]
-        self.env.ref("base.user_admin").groups_id = [(4, group.id)]
+        self.env.ref("base.user_admin").group_ids = [(4, group.id)]
         self.authenticate("admin", "admin")
         self.assertNotIn("parent_id",
                          self._session_info()["quick_create_restrictions"].get("res.partner", {}))

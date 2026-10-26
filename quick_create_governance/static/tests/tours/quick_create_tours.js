@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import tour from "web_tour.tour";
+import { registry } from "@web/core/registry";
 
 /*
  * Data and rules are created by tests/test_ui.py. The test form view shows:
@@ -25,14 +25,14 @@ const latencyStep = {
     content: "Restriction lookup has no measurable latency",
     trigger: ".o_form_view",
     run() {
-        const registry = odoo.__DEBUG__.services[REGISTRY_MODULE];
-        if (!registry) {
+        const lookup = odoo.loader.modules.get(REGISTRY_MODULE);
+        if (!lookup) {
             console.error(`${REGISTRY_MODULE} is not loaded`);
             return;
         }
         const start = performance.now();
         for (let i = 0; i < LOOKUPS; i++) {
-            registry.getQuickCreateRestriction("res.partner", i % 2 ? "parent_id" : "title");
+            lookup.getQuickCreateRestriction("res.partner", i % 2 ? "parent_id" : "title");
         }
         const elapsed = performance.now() - start;
         if (elapsed > LATENCY_BUDGET_MS) {
@@ -47,7 +47,7 @@ function typeIn(name, text) {
     return {
         content: `Type "${text}" in ${name}`,
         trigger: `${field(name)} input`,
-        run: `text ${text}`,
+        run: `edit ${text}`,
     };
 }
 
@@ -58,14 +58,12 @@ function noCreationOptions(name) {
     );
 }
 
-tour.register(
-    "quick_create_governance_restricted",
-    { test: true },
-    [
+registry.category("web_tour.tours").add("quick_create_governance_restricted", {
+    steps: () => [
         {
             content: "Form is ready",
             trigger: `${field("name")} input`,
-            run: "text QCR Tour Partner",
+            run: "edit QCR Tour Partner",
         },
         latencyStep,
 
@@ -79,6 +77,7 @@ tour.register(
         {
             content: "Open Search More",
             trigger: `${dropdown("parent_id")} .o_m2o_dropdown_option_search_more`,
+            run: "click",
         },
         check("Dialog list is loaded", ".modal .o_list_view .o_data_row"),
         check(
@@ -88,6 +87,7 @@ tour.register(
         {
             content: "Close the dialog",
             trigger: ".modal .modal-footer .o_form_button_cancel",
+            run: "click",
         },
         check("Dialog closed", "body:not(:has(.modal .o_list_view))"),
 
@@ -113,17 +113,15 @@ tour.register(
             "user_id: no Create and edit, no misleading 'No records'",
             `${dropdown("user_id")}:not(:has(.o_m2o_dropdown_option_create_edit)):not(:has(.o_m2o_no_result))`
         ),
-    ]
-);
+    ],
+});
 
-tour.register(
-    "quick_create_governance_exempt",
-    { test: true },
-    [
+registry.category("web_tour.tours").add("quick_create_governance_exempt", {
+    steps: () => [
         {
             content: "Form is ready",
             trigger: `${field("name")} input`,
-            run: "text QCR Exempt Partner",
+            run: "edit QCR Exempt Partner",
         },
         typeIn("parent_id", "QCR Nomatch"),
         check("Exempt user: Create available", `${dropdown("parent_id")} .o_m2o_dropdown_option_create`),
@@ -131,5 +129,5 @@ tour.register(
             "Exempt user: Create and edit available",
             `${dropdown("parent_id")} .o_m2o_dropdown_option_create_edit`
         ),
-    ]
-);
+    ],
+});

@@ -30,8 +30,8 @@ class TestQuickCreateRule(TransactionCase):
     def setUp(self):
         super().setUp()
         # ormcache survives the test-transaction rollback: start and end clean.
-        self.Rule.clear_caches()
-        self.addCleanup(self.Rule.clear_caches)
+        self.env.registry.clear_cache()
+        self.addCleanup(self.env.registry.clear_cache)
 
     # helpers -----------------------------------------------------------
     def _rule(self, fields=(), **vals):
@@ -142,11 +142,11 @@ class TestQuickCreateRule(TransactionCase):
         self._rule([self.f_parent], exempt_group_ids=[(6, 0, self.group_exempt.ids)])
         user = self.env["res.users"].create({
             "name": "QCR User", "login": "qcr_user",
-            "groups_id": [(6, 0, [self.env.ref("base.group_user").id])],
+            "group_ids": [(6, 0, [self.env.ref("base.group_user").id])],
         })
         Rule_as_user = self.Rule.with_user(user)
         self.assertIn("res.partner", Rule_as_user._get_session_restrictions())
-        user.groups_id = [(4, self.group_exempt.id)]
+        user.group_ids = [(4, self.group_exempt.id)]
         self.assertNotIn("res.partner", Rule_as_user._get_session_restrictions())
 
     def test_24_model_deletion_cascades(self):

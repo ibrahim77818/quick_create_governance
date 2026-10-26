@@ -1,4 +1,4 @@
-# Quick Create Governance (Odoo 16, Community & Enterprise)
+# Quick Create Governance (Odoo 19, Community & Enterprise)
 
 Centrally remove **Create** and/or **Create and edit...** from many2one / many2many
 widgets, per model and per field.
@@ -25,10 +25,9 @@ Rules reach users at login / page reload (use **Apply Now (Reload)** to refresh 
    Warm cache = 0 SQL queries; no RPC is ever added to dropdown interactions.
 3. JS patches (`static/src/js`) resolve the restriction once per field mount and
    strip capabilities **after** core evaluated XML options:
-   * `Many2OneField` (+ every subclass: avatar, partner, list/kanban m2o, Studio...)
+   * the generic `Field` component, where Odoo 19 builds the props of every many2one widget
+     (Many2OneField, avatar, barcode, list/kanban m2o, Studio...)
    * `Many2ManyTagsField` (+ subclasses) and many2many `X2ManyField` dialogs
-   * `Many2XAutocomplete` safety net (filters any creation entry still present)
-   * legacy `FieldMany2One` (views not yet converted to OWL in v16)
 
 Governance is subtractive only: it never re-enables creation that the view
 (`no_create`, `no_create_edit`, `no_quick_create`, `can_create`, Studio) disabled,

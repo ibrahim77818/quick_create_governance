@@ -30,7 +30,7 @@
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                            attrs="{'invisible': [('active', '=', True)]}"/>
+                            invisible="active"/>
                     <div class="oe_title">
                         <label for="name" string="Rule"/>
                         <h1><field name="name" readonly="1"/></h1>
@@ -43,7 +43,7 @@
                             <field name="field_ids" widget="many2many_tags"
                                    options="{'no_create': True}"
                                    placeholder="Empty = every many2one / many2many field"
-                                   attrs="{'readonly': [('model_id', '=', False)]}"/>
+                                   readonly="not model_id"/>
                         </group>
                         <group string="Blocked Actions">
                             <field name="block_quick_create"/>

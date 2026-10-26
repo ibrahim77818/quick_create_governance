@@ -1,4 +1,4 @@
-<!-- Odoo Apps description page for quick_create_governance (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<!-- Odoo Apps description page for quick_create_governance (Odoo 17.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
 <section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
 
 <!-- ============================== HERO ============================== -->
@@ -7,7 +7,7 @@
   <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">Quick Create Governance</h1>
   <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">Decide from one screen where users may create records on the fly. Pick a model and its many2one / many2many fields, and the <b>Create</b> and <b>Create and edit...</b> options disappear from their dropdowns &ndash; no XML, no view inheritance, no Studio edits.</p>
   <div>
-    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 17.0</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">19 automated tests</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; العربية</span>
@@ -29,7 +29,7 @@
 <p style="font-size:16px;color:#555;margin:0 0 18px;">One typo in a dropdown and Odoo creates a duplicate company, tag or country. Standard Odoo can stop it, but only field by field, view by view.</p>
 <div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
   <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
-    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 17</h3>
     <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
       <li>Blocking quick create means adding <b>no_create</b> / <b>no_create_edit</b> options in the <b>XML of each view</b>.</li>
       <li>The same field appears in <b>many views</b> (form, list, wizards, other apps); each needs its own inheritance.</li>
@@ -64,7 +64,7 @@
 
 <!-- ============================== FEATURES ============================== -->
 <h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Features</h2>
-<p style="font-size:16px;color:#555;margin:0 0 4px;">Screenshots use the module&rsquo;s demo data on a standard Odoo 16 database: three rules on <b>Contact</b> (Related Company + Tags, Salesperson, Country), one on <b>Companies</b>, and an archived rule on <b>Bank Accounts</b>.</p>
+<p style="font-size:16px;color:#555;margin:0 0 4px;">Screenshots use the module&rsquo;s demo data on a standard Odoo 17 database: three rules on <b>Contact</b> (Related Company + Tags, Salesperson, Country), one on <b>Companies</b>, and an archived rule on <b>Bank Accounts</b>.</p>
 
 <div style="margin:44px 0 0;">
   <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Menus</div>
@@ -138,8 +138,8 @@
 <div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>XML says no_create: False</b><br/><span style="color:#555;">The rule is applied after view options are read, so a governed field stays blocked.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Studio-edited views</b><br/><span style="color:#555;">Enforcement lives in the field widgets, not in the view arch, so customised views are covered too.</span></div>
-  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Older (legacy) screens</b><br/><span style="color:#555;">Odoo 16 views not yet converted to OWL use the legacy many2one widget; it is governed by the same rules.</span></div>
-  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Only "Create and edit" blocked</b><br/><span style="color:#555;">Quick create stays, and the misleading "No records" line next to it is hidden.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>"Search More..." on every match</b><br/><span style="color:#555;">Odoo 17 offers <b>Search More...</b> as soon as one record matches; on governed fields its dialog never shows <b>New</b>.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Only "Create and edit" blocked</b><br/><span style="color:#555;">Quick create stays; the full form, the dialog <b>New</b> button and many2many <b>Add a line</b> creation are removed.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>One2many fields</b><br/><span style="color:#555;">Never touched: they cannot be selected in a rule, so adding lines works as before.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Uninstalled model or field</b><br/><span style="color:#555;">Rules on a deleted model are removed with it (cascade); dropped fields leave the rule automatically.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-worker servers</b><br/><span style="color:#555;">Saving, archiving or deleting a rule clears the compiled cache on every worker.</span></div>
@@ -166,12 +166,12 @@
 <p style="font-size:16px;color:#555;margin:0 0 18px;">For the people who install and maintain it.</p>
 <table style="width:100%;border-collapse:collapse;font-size:15px;">
   <tbody>
-    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Odoo version</td><td style="padding:10px 14px;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Odoo version</td><td style="padding:10px 14px;">17.0, Community and Enterprise</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Depends on</td><td style="padding:10px 14px;"><code>base</code>, <code>web</code></td></tr>
     <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Python dependency</td><td style="padding:10px 14px;">None</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Menus</td><td style="padding:10px 14px;">Settings &rsaquo; Users &amp; Companies &rsaquo; Quick Create Governance</td></tr>
     <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Models</td><td style="padding:10px 14px;"><code>quick.create.rule</code>; extends <code>ir.http</code> (session info)</td></tr>
-    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Front end</td><td style="padding:10px 14px;">Patches <code>Many2OneField</code>, <code>Many2ManyTagsField</code>, <code>X2ManyField</code> (many2many), <code>Many2XAutocomplete</code> and the legacy <code>FieldMany2One</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Front end</td><td style="padding:10px 14px;">Patches <code>Many2OneField</code>, <code>Many2ManyTagsField</code>, <code>X2ManyField</code> (many2many), <code>Many2XAutocomplete</code> (Odoo 17 <code>patch()</code> API)</td></tr>
     <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Performance</td><td style="padding:10px 14px;">Rules compiled once per group set (ORM cache), shipped in <code>session_info</code>; per-field check is an in-memory lookup</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Languages</td><td style="padding:10px 14px;">English, Arabic (<code>i18n/ar.po</code>), <code>.pot</code> template included</td></tr>
     <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Automated tests</td><td style="padding:10px 14px;">19: 16 unit tests (compilation, merging, exemptions, constraints, cache invalidation, zero-query warm cache) and 3 HTTP tests (session payload + 2 browser tours, including a latency budget)</td></tr>

@@ -7,6 +7,7 @@
  * entry survives in the dropdown, whatever a subclass passed as props.
  * Ungoverned widgets (no marker) are returned untouched.
  */
+import { _t } from "@web/core/l10n/translation";
 import { patch } from "@web/core/utils/patch";
 import { Many2XAutocomplete } from "@web/views/fields/relational_utils";
 
@@ -19,9 +20,9 @@ function hasClass(option, cls) {
     return typeof option.classList === "string" && option.classList.split(/\s+/).includes(cls);
 }
 
-patch(Many2XAutocomplete.prototype, "quick_create_governance.Many2XAutocomplete", {
+patch(Many2XAutocomplete.prototype, {
     async loadOptionsSource(request) {
-        const options = await this._super(...arguments);
+        const options = await super.loadOptionsSource(...arguments);
         const restriction = this.props.activeActions && this.props.activeActions.qcgRestriction;
         if (!restriction) {
             return options;
@@ -39,8 +40,8 @@ patch(Many2XAutocomplete.prototype, "quick_create_governance.Many2XAutocomplete"
             (o) => hasClass(o, CREATE_CLASS) || hasClass(o, CREATE_EDIT_CLASS)
         );
         if (canStillCreate) {
-            // Only "Create and edit" was blocked: activeActions.create is false,
-            // which makes core add a misleading "No records" next to "Create".
+            // A creation entry survives (e.g. only "Create and edit" blocked):
+            // never show "No records" next to it.
             result = result.filter((o) => !hasClass(o, NO_RESULT_CLASS));
         } else {
             // Nothing can be created any more: "Start typing..." is pointless.
@@ -48,7 +49,7 @@ patch(Many2XAutocomplete.prototype, "quick_create_governance.Many2XAutocomplete"
             const hasRecords = result.some((o) => !o.action && !o.unselectable);
             if (request.length && !hasRecords && !result.some((o) => hasClass(o, NO_RESULT_CLASS))) {
                 result.push({
-                    label: this.env._t("No records"),
+                    label: _t("No records"),
                     classList: NO_RESULT_CLASS,
                     unselectable: true,
                 });

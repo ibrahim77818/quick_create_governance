@@ -18,7 +18,7 @@ class TestQuickCreateGovernanceUi(HttpCase):
         Rule = env["quick.create.rule"]
         # Isolate from pre-existing (e.g. demo) rules; rolled back after the class.
         Rule.search([]).write({"active": False})
-        Rule.clear_caches()
+        env.registry.clear_cache()
         cls.partner_model = env["ir.model"]._get("res.partner")
         fields = {
             name: env["ir.model.fields"]._get("res.partner", name)
@@ -75,7 +75,7 @@ class TestQuickCreateGovernanceUi(HttpCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.env["quick.create.rule"].clear_caches()
+        cls.env.registry.clear_cache()
         super().tearDownClass()
 
     def _session_info(self):

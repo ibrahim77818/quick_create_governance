@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Quick Create Governance",
-    "version": "16.0.1.0.1",
+    "version": "20.0.1.0.0",
     "summary": "Centrally block 'Create' / 'Create and edit...' on chosen models and "
                "relational fields, with session-cached rules and zero runtime RPC.",
     "description": """
@@ -21,8 +21,7 @@ relational fields (many2one / many2many) users may create records on the fly.
 * Enforcement is purely subtractive: restricted fields lose creation
   options whatever the XML / Studio options say, unconfigured fields keep
   native behaviour (including their own no_create / no_create_edit options).
-* Works with Community and Enterprise (OWL fields, plus the legacy
-  many2one widget still used by some v16 legacy views).
+* Works with Community and Enterprise (OWL relational fields).
 """,
     "author": "Ibrahim Yahia",
     "website": "https://www.linkedin.com/in/ibrahim-yahia",
@@ -31,7 +30,7 @@ relational fields (many2one / many2many) users may create records on the fly.
     "images": ["static/description/banner.png"],
     "depends": ["base", "web"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/quick_create_rule_views.xml",
     ],
     "demo": [
@@ -40,11 +39,9 @@ relational fields (many2one / many2many) users may create records on the fly.
     "assets": {
         "web.assets_backend": [
             "quick_create_governance/static/src/js/restriction_registry.js",
-            "quick_create_governance/static/src/js/many2x_autocomplete_patch.js",
-            "quick_create_governance/static/src/js/many2one_patch.js",
+            "quick_create_governance/static/src/js/field_props_patch.js",
             "quick_create_governance/static/src/js/many2many_tags_patch.js",
             "quick_create_governance/static/src/js/x2many_patch.js",
-            "quick_create_governance/static/src/js/legacy_many2one_patch.js",
             "quick_create_governance/static/src/xml/many2many_tags.xml",
         ],
         "web.assets_tests": [

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import copy
 
-from odoo import _, api, fields, models, tools
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 RELATIONAL_TYPES = ("many2one", "many2many")
@@ -21,6 +21,9 @@ class QuickCreateRule(models.Model):
     _name = "quick.create.rule"
     _description = "Quick Create Governance Rule"
     _order = "model_name, sequence, id"
+    # Odoo 20: the ORM clears this ormcache on every create / write / unlink
+    # (and signals the other workers), replacing the manual CRUD overrides.
+    _clear_cache_name = "default"
 
     name = fields.Char(compute="_compute_name", store=True)
     sequence = fields.Integer(default=10)
@@ -75,25 +78,25 @@ class QuickCreateRule(models.Model):
     def _compute_name(self):
         for rule in self:
             if not rule.model_id:
-                rule.name = _("New rule")
+                rule.name = self.env._("New rule")
                 continue
             targets = ", ".join(rule.field_ids.mapped("field_description"))
-            rule.name = "%s / %s" % (rule.model_id.name, targets or _("All relational fields"))
+            rule.name = "%s / %s" % (rule.model_id.name, targets or self.env._("All relational fields"))
 
     @api.depends("field_ids", "block_quick_create", "block_create_edit")
     def _compute_scope_summary(self):
         for rule in self:
             blocked = []
             if rule.block_quick_create:
-                blocked.append(_("Create"))
+                blocked.append(self.env._("Create"))
             if rule.block_create_edit:
-                blocked.append(_("Create and edit"))
+                blocked.append(self.env._("Create and edit"))
             fields_txt = (
-                _("%s field(s)") % len(rule.field_ids)
-                if rule.field_ids else _("all relational fields")
+                self.env._("%s field(s)") % len(rule.field_ids)
+                if rule.field_ids else self.env._("all relational fields")
             )
-            rule.scope_summary = _("%(actions)s blocked on %(fields)s") % {
-                "actions": " + ".join(blocked) or _("Nothing"),
+            rule.scope_summary = self.env._("%(actions)s blocked on %(fields)s") % {
+                "actions": " + ".join(blocked) or self.env._("Nothing"),
                 "fields": fields_txt,
             }
 
@@ -108,7 +111,7 @@ class QuickCreateRule(models.Model):
                 lambda f: f.model_id != rule.model_id or f.ttype not in RELATIONAL_TYPES
             )
             if wrong:
-                raise ValidationError(_(
+                raise ValidationError(self.env._(
                     "Rule '%(rule)s': the following fields are not many2one / many2many "
                     "fields of model %(model)s: %(fields)s",
                     rule=rule.name,
@@ -120,41 +123,22 @@ class QuickCreateRule(models.Model):
     def _check_block_flags(self):
         for rule in self:
             if not (rule.block_quick_create or rule.block_create_edit):
-                raise ValidationError(_(
+                raise ValidationError(self.env._(
                     "Rule '%s' must block at least one action "
                     '("Create" or "Create and edit...").', rule.name
                 ))
 
-    # ------------------------------------------------------------------
-    # CRUD: any change invalidates the compiled map (all workers)
-    # ------------------------------------------------------------------
-    @api.model_create_multi
-    def create(self, vals_list):
-        records = super().create(vals_list)
-        self.clear_caches()
-        return records
-
-    def write(self, vals):
-        res = super().write(vals)
-        self.clear_caches()
-        return res
-
-    def unlink(self):
-        res = super().unlink()
-        self.clear_caches()
-        return res
-
     def action_reload_client(self):
         """Rules reach a user's browser on the next page load; this reloads
         the current admin's web client so the change is visible at once."""
-        self.clear_caches()
+        self.env.transaction.invalidate_ormcache("default")
         return {"type": "ir.actions.client", "tag": "reload"}
 
     # ------------------------------------------------------------------
     # Compilation
     # ------------------------------------------------------------------
     @api.model
-    @tools.ormcache("group_ids")
+    @api.ormcache("group_ids")
     def _compile_restriction_map(self, group_ids):
         """Build ``{model: {field_or_*: {"create": bool, "create_edit": bool}}}``
         for a user belonging to ``group_ids`` (sorted tuple, part of the cache
@@ -176,7 +160,8 @@ class QuickCreateRule(models.Model):
     def _get_session_restrictions(self):
         """Restriction map for the current user, ready to be serialised in
         the web client session info."""
-        group_ids = tuple(sorted(self.env.user.groups_id.ids))
+        # Odoo 19: group_ids holds explicit groups only; implied ones live in all_group_ids.
+        group_ids = tuple(sorted(self.env.user.all_group_ids.ids))
         return copy.deepcopy(self._compile_restriction_map(group_ids))
 
     @api.model

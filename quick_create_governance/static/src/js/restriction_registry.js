@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**
  * Read-only access to the restriction map compiled server side and shipped in
  * the session info (see models/ir_http.py). Lookups are two property reads:

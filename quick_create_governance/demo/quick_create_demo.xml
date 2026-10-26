@@ -41,14 +41,14 @@
         <field name="note">No silent one-click records from the company form.</field>
     </record>
 
-    <record id="demo_rule_bank_account_bank" model="quick.create.rule">
+    <record id="demo_rule_bank_account_holder" model="quick.create.rule">
         <field name="sequence">10</field>
         <field name="active" eval="False"/>
         <field name="model_id" ref="base.model_res_partner_bank"/>
-        <field name="field_ids" eval="[(6, 0, [ref('base.field_res_partner_bank__bank_id')])]"/>
+        <field name="field_ids" eval="[(6, 0, [ref('base.field_res_partner_bank__partner_id')])]"/>
         <field name="block_quick_create" eval="True"/>
         <field name="block_create_edit" eval="True"/>
-        <field name="note">Paused while the bank list is being cleaned up.</field>
+        <field name="note">Paused while account holders are being cleaned up.</field>
     </record>
 
 </odoo>

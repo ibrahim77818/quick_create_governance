@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**
  * Governs Many2ManyTagsField and its subclasses (color-editable tags,
  * avatar tags...). useActiveActions() recomputes the actions object on every
@@ -11,9 +9,9 @@ import { patch } from "@web/core/utils/patch";
 import { Many2ManyTagsField } from "@web/views/fields/many2many_tags/many2many_tags_field";
 import { getQuickCreateRestriction } from "./restriction_registry";
 
-patch(Many2ManyTagsField.prototype, "quick_create_governance.Many2ManyTagsField", {
+patch(Many2ManyTagsField.prototype, {
     setup() {
-        this._super(...arguments);
+        super.setup(...arguments);
         const record = this.props.record;
         this.qcgRestriction = record ? getQuickCreateRestriction(record.resModel, this.props.name) : null;
         if (!this.qcgRestriction) {
@@ -28,7 +26,7 @@ patch(Many2ManyTagsField.prototype, "quick_create_governance.Many2ManyTagsField"
 
     _qcgApply() {
         const activeActions = this.activeActions;
-        // Native "can create" (XML options, create="..." domain, readonly), before governance.
+        // Native "can create" (view options, create="..." domain, readonly), before governance.
         this.qcgNativeCreate = Boolean(activeActions.create);
         if (this.qcgRestriction.createEdit) {
             activeActions.create = false;

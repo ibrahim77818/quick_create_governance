@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**
  * Many2many fields displayed as a list / kanban ("Add a line" opens a
  * SelectCreateDialog). When "Create and edit..." is blocked, the dialog keeps
@@ -11,9 +9,9 @@ import { patch } from "@web/core/utils/patch";
 import { X2ManyField } from "@web/views/fields/x2many/x2many_field";
 import { getQuickCreateRestriction } from "./restriction_registry";
 
-patch(X2ManyField.prototype, "quick_create_governance.X2ManyField", {
+patch(X2ManyField.prototype, {
     setup() {
-        this._super(...arguments);
+        super.setup(...arguments);
         if (!this.isMany2Many || !this.props.record) {
             return;
         }

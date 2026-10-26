@@ -52,6 +52,6 @@ relational fields (many2one / many2many) users may create records on the fly.
         ],
     },
     "installable": True,
-    "application": False,
+    "application": True,
     "auto_install": False,
 }

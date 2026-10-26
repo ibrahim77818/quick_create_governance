@@ -26,7 +26,7 @@ relational fields (many2one / many2many) users may create records on the fly.
 """,
     "author": "Ibrahim Yahia",
     "website": "https://www.linkedin.com/in/ibrahim-yahia",
-    "category": "Hidden/Tools",
+    "category": "Technical",
     "license": "LGPL-3",
     "images": ["static/description/banner.png"],
     "depends": ["base", "web"],

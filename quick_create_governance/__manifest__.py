@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Quick Create Governance",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "summary": "Centrally block 'Create' / 'Create and edit...' on chosen models and "
                "relational fields, with session-cached rules and zero runtime RPC.",
     "description": """
